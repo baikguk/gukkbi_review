@@ -1,0 +1,7 @@
+Linux® is an open source operating system (OS). An operating system is the software that directly manages a system’s hardware and resources, like CPU, memory, and storage. The OS sits between applications and hardware and makes the connections between all of your software and the physical resources that do the work.
+What's a command line?
+The command line is your direct access to a computer. It's where you ask software to perform hardware actions that point-and-click graphical user interfaces (GUIs) simply can't ask.
+
+Command lines are available on many operating systems—proprietary or open source. But it’s usually associated with Linux, because both command lines and open source software, together, give users unrestricted access to their computer.
+
+Our latest release of Red Hat® Enterprise Linux comes with even more built-in command line capabilities than ever before and includes consoles that bundle those capabilities in easy-to-use modules that exist off of the command line.
