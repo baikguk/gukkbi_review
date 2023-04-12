@@ -1,49 +1,45 @@
 import java.util.Scanner;
 
 public class Ex04 {
-    static Polynomial[] pl;
+    static Polynomial[] pl  =new Polynomial[10];;
     static int n=0;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        pl = new Polynomial[10];
-        boolean loop = true;
-        while (loop) {
+        while (true) {
             System.out.print("$ ");
             String cmd = sc.next();
             char name= sc.next().charAt(0);
             int n1;
             int n2;
             Polynomial found_pl;
-            switch (cmd) {
-                case "create":
+            if(cmd.equals("create")){
                    pl[n] = new Polynomial();
                    pl[n].terms = new Term[10];
                    create_term(pl[n].terms);
                    pl[n].name = name;
                    n++;
-                    break;
-                case "add":
-                    n1= sc.nextInt();
-                    n2 = sc.nextInt();
-                    found_pl = find_pl(name);
-                    add_term(found_pl,n1,n2);
-                    break;
-                case "calc":
-                    n1= sc.nextInt();
-                    found_pl = find_pl(name);
-                    System.out.println(calc(found_pl,n1));
-                    break;
-                case "print":
-                    found_pl = find_pl(name);
-                    print(found_pl);
-                    break ;
-                case "exit":
-                    sc.close();
-                    loop = false;
-                    System.exit(0);
-                    break;
-            }
+            }else if(cmd.equals("add")) {
+                n1 = sc.nextInt();
+                n2 = sc.nextInt();
+                found_pl = find_pl(name);
+                add_term(found_pl, n1, n2);
+            } else if (cmd.equals("calc")) {
+                n1= sc.nextInt();
+                found_pl = find_pl(name);
+                System.out.println(calc(found_pl,n1));
+
+            } else if (cmd.equals("print")) {
+                found_pl = find_pl(name);
+                print(found_pl);
+
+            } else if (cmd.equals("exit")) {
+                break;
+
+            }else
+                System.out.println("잘못입력");
         }
+        sc.close();
+        System.exit(0);
     }
 
     private static void print(Polynomial found_pl) {
@@ -98,6 +94,6 @@ public class Ex04 {
                 System.out.println("해당 하는 다항식이 없습니다");
             }
         }
-        return pl[i];
+        return null;
     }
 }
