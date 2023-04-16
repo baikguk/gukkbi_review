@@ -27,7 +27,7 @@ public class Ex02 {
         int [] non_dupley = non_duple(point_arr,1);
         for (int i = 0; i < count_point; i++) {
             point_arr[][]
-        } 
+        }
         return check_x&&check_y;
     }
 
