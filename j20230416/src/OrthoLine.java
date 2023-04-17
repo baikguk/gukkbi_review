@@ -15,8 +15,8 @@ public class OrthoLine {
         if (isVertical() && !pointline.isVertical()) {
 
         } else if (!isVertical() && pointline.isVertical()) {
-
+            return  true;
         }else
-            return false; 
+            return false;
     }
 }
