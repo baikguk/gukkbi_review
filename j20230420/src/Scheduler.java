@@ -27,6 +27,7 @@ public class Scheduler {
             } else if (command.equals("show")) {
                 handleShow();
             } else if (command.equals("exit")) {
+                System.out.println("프로그램을 종료합니다");
                 break;
             }
         }
