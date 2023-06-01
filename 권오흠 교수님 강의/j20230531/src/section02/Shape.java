@@ -1,6 +1,6 @@
 package section02;
 
-public abstract class Shape implements MyComparable {
+public abstract class Shape{
     public  String shapeName;
 
     public Shape(String shapeName) {
