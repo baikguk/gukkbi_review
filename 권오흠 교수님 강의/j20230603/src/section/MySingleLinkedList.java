@@ -10,7 +10,7 @@ public class MySingleLinkedList<T> {
         size = 0;
     }
 
-    public void addFirst(T item){
+    public void addFirst(T item) {
         Node<T> temp = new Node<>(item);
 //        Node<T>[] arr = new Node<T>[100];
 //        T t = new T();
@@ -32,21 +32,29 @@ public class MySingleLinkedList<T> {
         size++;
     }
 
-//    public void addBefore(Node<T> after, T item) {
+    //    public void addBefore(Node<T> after, T item) {
 //        // 간단하지 않음 after을 가르키는 노드를 찾는게 쉽지않음
 //        //
 //        Node<T> temp = new Node<>(item);
 //
 //
 //    }
-    public void add(int index, T item){
-
+    public void add(int index, T item) {
+        if (index < 0 || index > size) {
+            return;
+        }
+        if (index == 0) {
+            addFirst(item);
+        }else {
+            Node<T> p = getNode(index-1);
+            addAfter(p,item);
+        }
     }
 
-    public T removeFirst(){
-        if(head == null){
+    public T removeFirst() {
+        if (head == null) {
             return null;
-        }else{
+        } else {
             T removeData = head.data;
             head = head.next;
             size--;
@@ -55,18 +63,41 @@ public class MySingleLinkedList<T> {
     }
 
     public T removeAter(Node<T> before) {
-    // 양방향 연결리스트에서는 삭제하기 위해 삭제당하는 노드 전의 객체가 필요함
-        if(before.next != null) {
+        // 양방향 연결리스트에서는 삭제하기 위해 삭제당하는 노드 전의 객체가 필요함
+        if (before.next != null) {
             T removeData = before.data;
             before.next = before.next.next;
             size--;
             return removeData;
-        }else
+        } else
             return null;
     }
 
-    public void remove(int index) {
+    public T remove(int index) {
+        if (index < 0 || index >= size) {
+            return null;
+        }
+        if (index == 0) {
+            return removeFirst();
+        }
+        Node<T> before = getNode(index-1);
+        return removeAter(before);
 
+    }
+    public T remove(T item) {
+        Node<T> p =head;
+        Node<T> q = null; // 제거를 하기 위해서는 itemㅇ을 갖는 노드의 전 주소가 필요함으로
+        while (p != null && !p.data.equals(item)) {
+            q=p;
+            p= p.next;
+        }
+        if (p == null) {
+            return null;
+        }
+        if (q == null) {
+            return removeFirst();
+        }
+        return removeAter(q);
     }
 
     public int indexOf(T item) {
@@ -75,7 +106,7 @@ public class MySingleLinkedList<T> {
         while (p != null) {
             if (p.data.equals(item)) {
                 return index;
-            }else {
+            } else {
                 p = p.next;
                 index++;
             }
@@ -85,19 +116,34 @@ public class MySingleLinkedList<T> {
     }
 
     public T get(int index) {
-        return null;
+        if (index < 0 || index >= size) {
+            return null;
+        }
+//        Node<T> p = head;
+//        for (int i = 0; i < index; ++){
+//            p = p.next;
+//        }
+//        return p.data;
+        return getNode(index).data;
     }
 
+    public Node<T> getNode(int index) {
+        if (index < 0 || index >= size) {
+            return null;
+        }
+        Node<T> p = head;
+        for (int i = 0; i < index; i++){
+            p = p.next;
+        }
+        return p;
+    }
 
     public static void main(String[] args) {
-        MySingleLinkedList<String> str_list =new MySingleLinkedList<>();
-        str_list.add(0,"Saturday");
-        str_list.add(1,"Friday");
-        str_list.add(0, "Monday");
-        str_list.add(3, "Tuesday");
-
-        String str = str_list.get(2);
-        str_list.remove(2);
-        int pos = str_list.indexOf("Friday");
+        MySingleLinkedList<String> list = new MySingleLinkedList<>();
+        list.addFirst("Monday");
+        list.addFirst("Sunday");
+        list.add(2, "Saturday");
+        list.add(2, "Friday");
+        list.remove("Saturday)");
     }
 }
